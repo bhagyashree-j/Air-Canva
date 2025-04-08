@@ -1,20 +1,96 @@
-# Air-Canvas-project
-Computer vision project implemented with OpenCV
+# Air Canvas
 
-We have built an Air Canvas which can draw anything on it by just capturing the motion of a coloured marker with camera. Here a coloured object at tip of finger is used as the marker.
+A computer vision application that enables you to draw in the air using colored object tracking.
 
-We will be using the computer vision techniques of OpenCV to build this project. The preffered language is python due to its exhaustive libraries and easy to use syntax.
+![Air Canvas Demo](drawing-demo.png)
 
-Here Colour Detection and tracking is used in order to achieve the objective. The colour marker in detected and a mask is produced. It includes the further steps of morphological operations on the mask produced which are Erosion and Dilation. Erosion reduces the impurities present in the mask and dilation further restores the eroded main mask.
+## Overview
 
-# Algorithm
+Air Canvas transforms your hand movements into digital drawings using computer vision techniques. With just your webcam and a colored object (like a colored pen cap or fingertip), you can create artwork by moving in front of your camera.
 
-1. Start reading the frames and convert the captured frames to HSV colour space.(Easy for colour detection)
-2. Prepare the canvas frame and put the respective ink buttons on it.
-3.. Adjust the trackbar values for finding the mask of coloured marker.
-4. Preprocess the mask with morphological operations.(Erotion and dilation)
-5. Detect the contours, find the center coordinates of largest contour and keep storing them in the array for successive frames .(Arrays for drawing points on canvas)
-6. Finally draw the points stored in array on the frames and canvas .
+## Features
 
-Requirements: 
-Python3 , numpy , opencv installed on your system.
+- **Air Drawing**: Draw by moving a colored object in front of your webcam
+- **Multi-color Support**: Choose from blue, green, red, and yellow colors
+- **Real-time Tracking**: Immediate visual feedback as you draw
+- **Adjustable Color Detection**: Fine-tune HSV color values for optimal tracking in different lighting conditions
+- **Clear Canvas Option**: Reset your drawing with a simple gesture
+
+## Requirements
+
+- Python 3.6+
+- OpenCV
+- NumPy
+- Webcam
+
+## Installation
+
+1. Ensure you have Python installed on your system
+2. Install the required packages:
+   ```bash
+   pip install numpy opencv-python
+   ```
+3. Download the `air_canvas.py` file
+4. Run the application:
+   ```bash
+   python air_canvas.py
+   ```
+
+## How to Use
+
+1. **Launch the application**:
+   - Run the Python script to open the main interface
+   - You'll see three windows: "Paint" (your canvas), "Tracking" (webcam feed), and "Color detectors" (HSV adjustment)
+
+2. **Adjust color detection**:
+   - Use the sliders in the "Color detectors" window to adjust HSV values
+   - Adjust until your colored object is clearly visible in the "mask" window
+   - Recommended: Use a brightly colored object (like a blue pen cap, green sticky note, etc.)
+
+3. **Drawing**:
+   - Hold your colored object in front of the camera
+   - You'll see a circle around the object in the Tracking window
+   - Move your hand to draw on the canvas
+   - To select a different color, hover your object over the color rectangles at the top
+   - To clear the canvas, hover over the "CLEAR ALL" button
+
+4. **Exit the application**:
+   - Press 'q' to quit
+
+## Technical Implementation
+
+- **HSV Color Space**: Used for robust color detection under various lighting conditions
+- **Contour Detection**: Identifies the largest colored object in the frame
+- **Centroid Tracking**: Calculates the center point of the colored object
+- **Deque Data Structure**: Stores points for drawing lines between positions
+
+## Code Structure
+
+- Color detection and HSV value adjustment
+- Webcam frame processing
+- Contour detection and position tracking
+- Drawing implementation with multiple colors
+- User interface with color selection and clear functionality
+
+## Troubleshooting
+
+- **Poor Color Detection**: Adjust the HSV sliders to better match your object and lighting conditions
+- **Jerky Lines**: Move the object more slowly for smoother tracking
+- **No Detection**: Ensure your colored object has good contrast with the background
+- **Performance Issues**: Close other applications using your webcam
+
+## Future Enhancements
+
+- Shape recognition
+- Save and load drawings
+- Multiple object tracking
+- Thickness control
+- Eraser functionality
+
+## License
+
+This project is available under the MIT License.
+
+---
+
+For a web-based demo and additional information, visit: [https://bhagyashree-j.github.io/Air-Canvas-Demo/](https://bhagyashree-j.github.io/Air-Canvas-Demo/)
